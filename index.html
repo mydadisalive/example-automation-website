@@ -2,23 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Trivia Quiz</title>
+    <title>Weather App</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Trivia Quiz</h1>
-    <div id="quiz-container">
-        <p id="question">Loading question...</p>
-        <form id="quiz-form">
-            <div id="answers">
-                <!-- Answers will be populated here -->
-            </div>
-            <input type="submit" value="Submit">
-        </form>
-        <p id="feedback"></p>
+    <h1>Weather App</h1>
+    <div id="weather-container">
+        <input type="text" id="city" placeholder="Enter city name">
+        <button id="fetch-weather">Get Weather</button>
+        <div id="weather-info">
+            <p id="temperature"></p>
+            <p id="description"></p>
+        </div>
     </div>
-    <button id="new-question">New Question</button>
-
     <script src="main.js"></script>
 </body>
 </html>

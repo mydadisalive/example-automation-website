@@ -9,41 +9,22 @@ def browser():
 
 def test_homepage(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
-    assert 'Trivia Quiz' in browser.title
+    assert 'Weather App' in browser.title
 
-def test_quiz_functionality(browser):
+def test_fetch_weather(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
     
-    # Wait for the question to load
+    city_input = browser.find_element_by_id('city')
+    fetch_button = browser.find_element_by_id('fetch-weather')
+    
+    city_input.send_keys('London')
+    fetch_button.click()
+    
+    # Wait for the weather data to load
     browser.implicitly_wait(10)
     
-    # Select an answer
-    answers = browser.find_elements_by_name('answer')
-    if answers:
-        answers[0].click()
+    temperature = browser.find_element_by_id('temperature').text
+    description = browser.find_element_by_id('description').text
     
-    # Submit the form
-    submit_button = browser.find_element_by_css_selector('input[type="submit"]')
-    submit_button.click()
-    
-    # Check feedback
-    feedback = browser.find_element_by_id('feedback')
-    assert feedback.text in ['Correct!', 'Wrong! The correct answer was: ']
-
-def test_new_question_button(browser):
-    browser.get('https://mydadisalive.github.io/example-automation-website/')
-    
-    # Wait for the question to load
-    browser.implicitly_wait(10)
-    
-    initial_question = browser.find_element_by_id('question').text
-    
-    new_question_button = browser.find_element_by_id('new-question')
-    new_question_button.click()
-    
-    # Wait for the new question to load
-    browser.implicitly_wait(10)
-    
-    new_question = browser.find_element_by_id('question').text
-    
-    assert initial_question != new_question
+    assert 'Temperature:' in temperature
+    assert 'Description:' in description

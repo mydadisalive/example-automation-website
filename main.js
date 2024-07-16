@@ -1,59 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetchNewQuestion();
-
-    document.getElementById('quiz-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        checkAnswer();
-    });
-
-    document.getElementById('new-question').addEventListener('click', function() {
-        fetchNewQuestion();
+    document.getElementById('fetch-weather').addEventListener('click', function() {
+        fetchWeather();
     });
 });
 
-function fetchNewQuestion() {
-    fetch('https://opentdb.com/api.php?amount=1&type=multiple')
-        .then(response => response.json())
-        .then(data => {
-            const questionData = data.results[0];
-            displayQuestion(questionData);
-        })
-        .catch(error => console.error('Error fetching question:', error));
-}
-
-function displayQuestion(questionData) {
-    const questionElement = document.getElementById('question');
-    questionElement.innerHTML = questionData.question;
-
-    const answersContainer = document.getElementById('answers');
-    answersContainer.innerHTML = '';
-
-    const correctAnswer = questionData.correct_answer;
-    const incorrectAnswers = questionData.incorrect_answers;
-    const allAnswers = [...incorrectAnswers, correctAnswer].sort(() => Math.random() - 0.5);
-
-    allAnswers.forEach(answer => {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        input.type = 'radio';
-        input.name = 'answer';
-        input.value = answer;
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(answer));
-        answersContainer.appendChild(label);
-    });
-
-    document.getElementById('feedback').innerHTML = '';
-}
-
-function checkAnswer() {
-    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    if (!selectedAnswer) {
-        alert('Please select an answer!');
+function fetchWeather() {
+    const city = document.getElementById('city').value;
+    if (!city) {
+        alert('Please enter a city name');
         return;
     }
 
-    const questionElement = document.getElementById('question');
-    const questionText = questionElement.textContent;
+    const apiKey = 'YOUR_API_KEY';  // Replace with your OpenWeatherMap API key
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    fetch(`https://opentdb.com/api.php?amount=1&type=
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.cod !== 200) {
+                alert('City not found');
+                return;
+            }
+            displayWeather(data);
+        })
+        .catch(error => console.error('Error fetching weather data:', error));
+}
+
+function displayWeather(data) {
+    const temperature = document.getElementById('temperature');
+    const description = document.getElementById('description');
+
+    temperature.textContent = `Temperature: ${data.main.temp}°C`;
+    description.textContent = `Description: ${data.weather[0].description}`;
+}

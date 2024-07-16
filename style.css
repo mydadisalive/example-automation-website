@@ -4,7 +4,7 @@ body {
     background-color: #f0f8ff;
 }
 
-#quiz-container {
+#weather-container {
     display: inline-block;
     text-align: left;
     background-color: #fff;
@@ -17,17 +17,14 @@ h1 {
     color: #333;
 }
 
-#question {
-    font-size: 18px;
-    font-weight: bold;
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 10px 0;
+    box-sizing: border-box;
 }
 
-#answers label {
-    display: block;
-    margin: 10px 0;
-}
-
-input[type="submit"] {
+button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
@@ -35,19 +32,10 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+button:hover {
     background-color: #45a049;
 }
 
-#new-question {
+#weather-info {
     margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#new-question:hover {
-    background-color: #007bb5;
 }
