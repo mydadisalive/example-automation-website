@@ -1,17 +1,30 @@
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff;
 }
 
-form {
-    margin-bottom: 20px;
+#quiz-container {
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-input[type="text"],
-input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0 10px 0;
-    box-sizing: border-box;
+h1 {
+    color: #333;
+}
+
+#question {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#answers label {
+    display: block;
+    margin: 10px 0;
 }
 
 input[type="submit"] {
@@ -26,14 +39,15 @@ input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-#repo-list {
-    list-style-type: none;
-    padding: 0;
+#new-question {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-#repo-list li {
-    background: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
+#new-question:hover {
+    background-color: #007bb5;
 }

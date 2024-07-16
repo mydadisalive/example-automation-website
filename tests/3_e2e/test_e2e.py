@@ -9,30 +9,41 @@ def browser():
 
 def test_homepage(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
-    assert 'Example Automation Website' in browser.title
+    assert 'Trivia Quiz' in browser.title
 
-def test_contact_form(browser):
+def test_quiz_functionality(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
-    name_input = browser.find_element_by_id('name')
-    email_input = browser.find_element_by_id('email')
-    submit_button = browser.find_element_by_css_selector('input[type="submit"]')
     
-    name_input.send_keys('John Doe')
-    email_input.send_keys('john@example.com')
+    # Wait for the question to load
+    browser.implicitly_wait(10)
+    
+    # Select an answer
+    answers = browser.find_elements_by_name('answer')
+    if answers:
+        answers[0].click()
+    
+    # Submit the form
+    submit_button = browser.find_element_by_css_selector('input[type="submit"]')
     submit_button.click()
     
-    response_text = browser.find_element_by_id('form-response').text
-    assert 'Thank you, John Doe! We will contact you at john@example.com.' in response_text
+    # Check feedback
+    feedback = browser.find_element_by_id('feedback')
+    assert feedback.text in ['Correct!', 'Wrong! The correct answer was: ']
 
-def test_fetch_repos(browser):
+def test_new_question_button(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
-    username_input = browser.find_element_by_id('github-username')
-    fetch_button = browser.find_element_by_id('fetch-repos')
     
-    username_input.send_keys('mydadisalive')
-    fetch_button.click()
-    
-    # Wait for the repositories to be fetched and displayed
+    # Wait for the question to load
     browser.implicitly_wait(10)
-    repo_list_items = browser.find_elements_by_css_selector('#repo-list li')
-    assert len(repo_list_items) > 0
+    
+    initial_question = browser.find_element_by_id('question').text
+    
+    new_question_button = browser.find_element_by_id('new-question')
+    new_question_button.click()
+    
+    # Wait for the new question to load
+    browser.implicitly_wait(10)
+    
+    new_question = browser.find_element_by_id('question').text
+    
+    assert initial_question != new_question
