@@ -1,4 +1,3 @@
-# tests/integration/test_integration.py
 import requests
 
 def test_homepage():

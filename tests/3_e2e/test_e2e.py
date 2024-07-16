@@ -1,4 +1,3 @@
-# tests/e2e/test_e2e.py
 from selenium import webdriver
 import pytest
 
