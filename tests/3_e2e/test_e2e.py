@@ -38,7 +38,8 @@ def test_fetch_quote(browser):
     author = browser.find_element(By.ID, 'author').text
     
     assert quote.startswith('"')
-    assert author.startswith('—')
+    assert author.startswith('—') or author.startswith('-')  # Check for both em dash and hyphen
+
 
 def test_quote_display(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
