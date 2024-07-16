@@ -9,22 +9,19 @@ def browser():
 
 def test_homepage(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
-    assert 'Weather App' in browser.title
+    assert 'Random Quote App' in browser.title
 
-def test_fetch_weather(browser):
+def test_fetch_quote(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
     
-    city_input = browser.find_element_by_id('city')
-    fetch_button = browser.find_element_by_id('fetch-weather')
-    
-    city_input.send_keys('London')
+    fetch_button = browser.find_element_by_id('fetch-quote')
     fetch_button.click()
     
-    # Wait for the weather data to load
+    # Wait for the quote data to load
     browser.implicitly_wait(10)
     
-    temperature = browser.find_element_by_id('temperature').text
-    description = browser.find_element_by_id('description').text
+    quote = browser.find_element_by_id('quote').text
+    author = browser.find_element_by_id('author').text
     
-    assert 'Temperature:' in temperature
-    assert 'Description:' in description
+    assert quote.startswith('"')
+    assert author.startswith('—')

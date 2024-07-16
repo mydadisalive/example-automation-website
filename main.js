@@ -1,35 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('fetch-weather').addEventListener('click', function() {
-        fetchWeather();
+    document.getElementById('fetch-quote').addEventListener('click', function() {
+        fetchRandomQuote();
     });
 });
 
-function fetchWeather() {
-    const city = document.getElementById('city').value;
-    if (!city) {
-        alert('Please enter a city name');
-        return;
-    }
-
-    const apiKey = 'YOUR_API_KEY';  // Replace with your OpenWeatherMap API key
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function fetchRandomQuote() {
+    const url = 'https://api.quotable.io/random';
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            if (data.cod !== 200) {
-                alert('City not found');
-                return;
-            }
-            displayWeather(data);
+            displayQuote(data);
         })
-        .catch(error => console.error('Error fetching weather data:', error));
+        .catch(error => console.error('Error fetching quote:', error));
 }
 
-function displayWeather(data) {
-    const temperature = document.getElementById('temperature');
-    const description = document.getElementById('description');
+function displayQuote(data) {
+    const quote = document.getElementById('quote');
+    const author = document.getElementById('author');
 
-    temperature.textContent = `Temperature: ${data.main.temp}°C`;
-    description.textContent = `Description: ${data.weather[0].description}`;
+    quote.textContent = `"${data.content}"`;
+    author.textContent = `— ${data.author}`;
 }
