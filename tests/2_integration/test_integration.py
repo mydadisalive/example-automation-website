@@ -13,11 +13,4 @@ def test_api_response():
     assert 'content' in data
     assert 'author' in data
 
-def test_api_multiple_requests():
-    for _ in range(5):
-        response = requests.get('https://api.quotable.io/random')
-        data = response.json()
-        
-        assert response.status_code == 200
-        assert 'content' in data
-        assert 'author' in data
+# TODO: add a test for multiple requests

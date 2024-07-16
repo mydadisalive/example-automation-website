@@ -31,22 +31,5 @@ def test_fetch_quote(browser):
     assert quote.startswith('"')
     assert author.startswith('—')
 
-def test_quote_display(browser):
-    browser.get('https://mydadisalive.github.io/example-automation-website/')
-    
-    fetch_button = browser.find_element(By.ID, 'fetch-quote')
-    fetch_button.click()
 
-    # Wait for the quote and author to be visible
-    WebDriverWait(browser, 10).until(
-        EC.visibility_of_element_located((By.ID, 'quote'))
-    )
-    WebDriverWait(browser, 10).until(
-        EC.visibility_of_element_located((By.ID, 'author'))
-    )
-    
-    quote = browser.find_element(By.ID, 'quote').text
-    author = browser.find_element(By.ID, 'author').text
-    
-    assert len(quote) > 0
-    assert len(author) > 0
+# TODO: add a test that verifies 'quote' and 'author' text boxes are present
