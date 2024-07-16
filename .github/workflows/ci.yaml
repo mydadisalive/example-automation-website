@@ -26,6 +26,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Build the project
+        run: |
+          echo "Building the project..."
+          # Assuming your build process
+          # mkdir -p build
+          # cp index.html build/
+          # cp style.css build/
+          # cp main.js build/
+
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -59,9 +68,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Change this to the directory you want to deploy
-          cname: your-custom-domain.com  # Optional: if you use a custom domain
+      - name: Set up Git user
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Copy built files to docs
+        run: |
+          mkdir -p docs
+          cp index.html docs/
+          cp style.css docs/
+          cp main.js docs/
+
+      - name: Commit built files
+        run: |
+          git add docs
+          git commit -m "Deploy built files to docs"
+          git push origin main
