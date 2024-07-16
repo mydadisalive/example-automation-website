@@ -96,3 +96,6 @@ dmypy.json
 
 # Windows
 Thumbs.db
+
+# Ignore HTML reports
+report.html

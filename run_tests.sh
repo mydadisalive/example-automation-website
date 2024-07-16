@@ -1,0 +1,1 @@
+pytest -v --maxfail=1 --html=report.html
