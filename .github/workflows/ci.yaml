@@ -29,11 +29,7 @@ jobs:
       - name: Build the project
         run: |
           echo "Building the project..."
-          # Assuming your build process
-          # mkdir -p build
-          # cp index.html build/
-          # cp style.css build/
-          # cp main.js build/
+          # Add any build steps here
 
   test:
     runs-on: ubuntu-latest
