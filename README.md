@@ -24,3 +24,12 @@ This is a simple example website for demonstrating automated testing.
     ```sh
     pytest tests/e2e
     ```
+
+## Running Tests
+
+To run the tests, you need to have Python and `pytest` installed. You can install `pytest` using pip:
+
+```sh
+bash run_tests.sh
+```
+
