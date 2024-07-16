@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Example Automation Website</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <h1>Welcome to the Example Automation Website</h1>
     <p>This is a simple website for demonstrating automated testing.</p>
+
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="form-response"></p>
+
+    <h2>GitHub Repositories</h2>
+    <input type="text" id="github-username" placeholder="Enter GitHub username">
+    <button id="fetch-repos">Fetch Repositories</button>
+    <ul id="repo-list"></ul>
+
+    <script src="main.js"></script>
 </body>
 </html>
