@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo apt-get install -y unzip curl
           google-chrome --version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+')
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d'.' -f1,2)
           echo "Chrome Version: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
           echo "ChromeDriver Version: $DRIVER_VERSION"
@@ -61,7 +61,7 @@ jobs:
         run: |
           sudo apt-get install -y unzip curl
           google-chrome --version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+')
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d'.' -f1,2)
           echo "Chrome Version: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
           echo "ChromeDriver Version: $DRIVER_VERSION"
@@ -96,7 +96,7 @@ jobs:
         run: |
           sudo apt-get install -y unzip curl
           google-chrome --version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+')
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d'.' -f1,2)
           echo "Chrome Version: $CHROME_VERSION"
           DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
           echo "ChromeDriver Version: $DRIVER_VERSION"
