@@ -60,3 +60,10 @@ def test_quote_display(browser):
     
     assert len(quote) > 0
     assert len(author) > 0
+
+# TODO: test_fetch_button_clickable(browser):
+# TODO: def test_initial_state(browser):
+# TODO: test_quote_and_author_update(browser):
+# TODO: test_page_contains_elements(browser):
+# TODO: test_author_format(browser):
+# TODO: test_fetch_quote_error(browser):
