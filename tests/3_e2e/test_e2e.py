@@ -81,5 +81,5 @@ def test_fetch_button_clickable(browser):
         EC.element_to_be_clickable((By.ID, 'fetch-quote'))
     )
     assert fetch_button.is_enabled()
-    time.sleep(2)  # Wait for 2 seconds
+    time.sleep(3)  # Wait for 2 seconds
     save_screenshot(browser, 'fetch_button_clickable.png')
