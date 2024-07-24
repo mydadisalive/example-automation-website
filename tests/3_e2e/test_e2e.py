@@ -1,10 +1,18 @@
+import os
+import pytest
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-import pytest
+
+def save_screenshot(driver, name, save_dir='tests/3_e2e/screenshots'):
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    file_path = os.path.join(save_dir, name)
+    driver.save_screenshot(file_path)
 
 @pytest.fixture
 def browser():
@@ -40,7 +48,6 @@ def test_fetch_quote(browser):
     assert quote.startswith('"')
     assert author.startswith('—') or author.startswith('-')  # Check for both em dash and hyphen
 
-
 def test_quote_display(browser):
     browser.get('https://mydadisalive.github.io/example-automation-website/')
     
@@ -67,3 +74,12 @@ def test_quote_display(browser):
 # TODO: test_page_contains_elements(browser):
 # TODO: test_author_format(browser):
 # TODO: test_fetch_quote_error(browser):
+
+def test_fetch_button_clickable(browser):
+    browser.get('https://mydadisalive.github.io/example-automation-website/')
+    fetch_button = WebDriverWait(browser, 10).until(
+        EC.element_to_be_clickable((By.ID, 'fetch-quote'))
+    )
+    assert fetch_button.is_enabled()
+    time.sleep(2)  # Wait for 2 seconds
+    save_screenshot(browser, 'fetch_button_clickable.png')

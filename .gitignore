@@ -99,3 +99,6 @@ Thumbs.db
 
 # Ignore HTML reports
 report.html
+
+# Ignore screenshots directory
+tests/3_e2e/screenshots/
